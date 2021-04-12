@@ -65,18 +65,18 @@ class Perceptron:
 
                     erro = True # ainda existe erro
 
-                #incrementa o numero de epocas
-                num_epocas +=1
+            #incrementa o numero de epocas
+            num_epocas +=1
 
-                #critero de parada é pelo número de épocas ou se não existir erro
-                if num_epocas > self.epocas or not erro:
-                    break
+            #critero de parada é pelo número de épocas ou se não existir erro
+            if num_epocas > self.epocas or not erro:
+                break
 
     #função utilizada para testar a rede
     #receve uma amostra a ser classificada e os nomes das classes
     #utiiza a funçao sinal, se é 1 então é classe1, se não é classe2
     def testar(self, amostra, classe1, classe2):
-
+        
         #insere 0 -1 
         amostra.insert(0, -1)
 
@@ -94,23 +94,26 @@ class Perceptron:
         else:
             print('A amostra pertence a classe %s ' % classe2)
 
+
     #função de ativação: degrau bipolar (sinal)
     def sinal(self, u): 
-        return 1 if u >= 0 else 1
+        return 1 if u >= 0 else -1
 
-print('\n A ou B?\n')
+print('\nA ou B?\n')
 
-#amostras: um total de 4 amostras
-amostras = [[0.1, 0.4, 0.7], [0.3, 0.7, 0.2], [0.6, 0.9, 0.8], [0.5, 0.7, 0.1]]
+# amostras: um total de 4 amostras
+amostras = [[0.1, 0.4, 0.7], [0.3, 0.7, 0.2], 
+				[0.6, 0.9, 0.8], [0.5, 0.7, 0.1]]
 
-#saida desejada de cada amostra
+# saídas desejadas de cada amostra
 saidas = [1, -1, -1, 1]
 
-#conjunto de amostras de testes 
+# conjunto de amostras de testes
 testes = copy.deepcopy(amostras)
 
-rede = Perceptron(amostras=amostras, saidas=saidas, taxa_aprendizado=0.1, epocas=1000)
-
+# cria uma rede Perceptron
+rede = Perceptron(amostras=amostras, saidas=saidas,	
+						taxa_aprendizado=0.1, epocas=1000)
 
 # treina a rede
 rede.treinar()
